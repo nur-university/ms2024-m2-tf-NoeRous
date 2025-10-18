@@ -12,6 +12,7 @@ import { DeliveryRouteEntity } from './infrastructure/typeorm/delivery_routes.en
 import { DealerEntity } from './infrastructure/typeorm/dealer.entity';
 import { CreateDealerHandler } from './aplication/handlers/create-dealer.handler';
 import { DeliverPackageHandler } from './aplication/handlers/deliver-package.handler';
+import { CreatePackageHandler } from './aplication/handlers/create-package.handler';
 
 @Module({
   imports: [CqrsModule,
@@ -19,7 +20,7 @@ import { DeliverPackageHandler } from './aplication/handlers/deliver-package.han
   ],
   controllers: [DeliveryController],
   providers: [
-    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,
+    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,CreatePackageHandler,
     { provide: 'DealerRepository', useClass: DealerTypeOrmRepositoryImpl },
     { provide: 'PackageRepository', useClass: PackageTypeOrmRepositoryImpl },
     { provide: 'DeliveryRouteRepository', useClass: DeliveryRouteTypeOrmRepositoryImpl },

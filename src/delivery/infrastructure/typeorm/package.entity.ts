@@ -19,9 +19,6 @@ export class PackageEntity {
   @Column({ nullable: true })
   addressStreet: string;
 
-  @Column({ nullable: true })
-  addressCity: string;
-
   @Column({ nullable: true, type: 'float' })
   lat?: number;
 

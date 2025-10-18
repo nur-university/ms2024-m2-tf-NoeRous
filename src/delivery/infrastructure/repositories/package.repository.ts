@@ -14,19 +14,13 @@ export class PackageTypeOrmRepositoryImpl implements PackageRepository {
     private readonly ormRepo: Repository<PackageEntity>
   ) {}
 
-  async save(pkg: Package): Promise<void> {
-    const entity = this.ormRepo.create({
-      id: pkg.id,
-      patientId: pkg.patientId,
-      deliveryDate: pkg.deliveryDate,
-      status: pkg.getStatus(),
-      addressStreet: pkg.address.street,
-      addressCity: pkg.address.city,
-      lat: pkg.address.lat,
-      lng: pkg.address.lng,
-    });
+   async save(pkg: Package): Promise<void> {
+  const entity = this.ormRepo.create(pkg.toPersistence());
+  
     await this.ormRepo.save(entity);
   }
+
+
 
   async findById(id: string): Promise<Package | null> {
     const entity = await this.ormRepo.findOne({ where: { id } });
@@ -36,7 +30,7 @@ export class PackageTypeOrmRepositoryImpl implements PackageRepository {
       entity.id,
       entity.patientId,
       entity.deliveryDate,
-      new Address(entity.addressStreet, entity.addressCity, entity.lat, entity.lng),
+      new Address(entity.addressStreet, entity.addressStreet, entity.lat, entity.lng),
     );
   }
 
@@ -48,7 +42,7 @@ export class PackageTypeOrmRepositoryImpl implements PackageRepository {
           e.id,
           e.patientId,
           e.deliveryDate,
-          new Address(e.addressStreet, e.addressCity, e.lat, e.lng),
+          new Address(e.addressStreet, e.addressStreet, e.lat, e.lng),
         )
     );
   }

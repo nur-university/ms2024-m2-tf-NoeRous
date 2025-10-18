@@ -5,6 +5,7 @@ Este microservicio gestiona la logística de entrega de paquetes. Permite:
 - Crear Dealers (distribuidores o repartidores).
 - Asignar paquetes a Dealers.
 - Marcar paquetes como entregados.
+- Crear Paquetes
 - Consultar rutas de entrega y paquetes asignados.
 
 El microservicio está desarrollado aplicando:

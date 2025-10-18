@@ -9,6 +9,7 @@ export class Package {
         public patientId: string,
         public deliveryDate: Date,
         public address: Address,
+        public deliveryRouteId?: string,
         private status: 'pending' | 'in_transit' | 'delivered' = 'pending'
 
     ) { }
@@ -31,6 +32,19 @@ export class Package {
         return this.status;
     }
 
+    toPersistence(): any {
+        return {
+            id: this.id,
+            patientId: this.patientId,
+            deliveryDate: this.deliveryDate,
+            status: this.getStatus(),
+            addressStreet: this.address.street,
+            addressCity:this.address.city,
+            lat:this.address.lat,
+            lng:this.address.lng,
+            deliveryRouteId: this.deliveryRouteId
+        };
+    }
     //crear paquete
     static create(id: string, patientId: string, deliveryDate: Date, address: Address): Package {
         const pkg = new Package(id, patientId, deliveryDate, address);

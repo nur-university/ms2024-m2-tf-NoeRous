@@ -4,6 +4,7 @@ import { AssingPackageToDealerCommand } from '../aplication/commands/assign-pack
 import { CreateDealerCommand } from '../aplication/commands/create-dealer.command';
 import { v4 as uuidv4 } from 'uuid';
 import { DeliverPackageCommand } from '../aplication/commands/deliver-package.command';
+import { CreatePackageCommand } from '../aplication/commands/create-package.command';
 
 @Controller('delivery')
 export class DeliveryController {
@@ -35,7 +36,7 @@ export class DeliveryController {
         );
 
         await this.commandBus.execute(command);
-        return { message: 'Package assigned successfully' };
+        return { message: 'Package asignado correctamente' };
     }
 
     //ENTREGAR PAQUETE
@@ -50,5 +51,22 @@ export class DeliveryController {
             status: true,
             message: `Paquete ${id} marcado como entregado.`,
         };
+    }
+
+    //crear paquete 
+    @Post('create-package')
+    async createPackage(@Body() body: any) {
+        await this.commandBus.execute(
+            new CreatePackageCommand(
+                body.patientId,
+                new Date(body.deliveryDate),
+                body.addressStreet,
+                body.addressCity,
+                body.lat,
+                body.lng,
+                body.deliveryRouteId
+            )
+        );
+         return { message: 'Paquete creado correctamente' };
     }
 }
