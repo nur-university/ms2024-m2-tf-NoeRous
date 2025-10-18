@@ -25,6 +25,6 @@ import { CreatePackageHandler } from './aplication/handlers/create-package.handl
     { provide: 'PackageRepository', useClass: PackageTypeOrmRepositoryImpl },
     { provide: 'DeliveryRouteRepository', useClass: DeliveryRouteTypeOrmRepositoryImpl },
   ],
-   exports: ['PackageRepository','DeliveryRouteRepository','DealerRepository'],
+   //
 })
 export class DeliveryModule {}
