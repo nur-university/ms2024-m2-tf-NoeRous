@@ -24,7 +24,7 @@ export class Package {
     markDelivered() {
         this.status = 'delivered';
         this.deliveryDate = new Date();
-        //new PackageDeliveredEvent(this.id, dealerId, this.deliveryDate);
+        new PackageDeliveredEvent(this.id, this.deliveryDate);
     }
 
     //obtener el estado del paquete 
