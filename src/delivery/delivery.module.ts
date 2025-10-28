@@ -14,6 +14,9 @@ import { CreateDealerHandler } from './aplication/handlers/create-dealer.handler
 import { DeliverPackageHandler } from './aplication/handlers/deliver-package.handler';
 import { CreatePackageHandler } from './aplication/handlers/create-package.handler';
 import { PatientEntity } from './infrastructure/typeorm/patient.entity';
+import { CreateRouteWithPackagesHandler } from './aplication/handlers/create-route-with-packages.handler';
+import { UnitOfWorkRepositoryImpl } from './infrastructure/repositories/unit-of-work.repository';
+
 
 @Module({
   imports: [CqrsModule,
@@ -21,10 +24,11 @@ import { PatientEntity } from './infrastructure/typeorm/patient.entity';
   ],
   controllers: [DeliveryController],
   providers: [
-    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,CreatePackageHandler,
+    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,CreatePackageHandler,CreateRouteWithPackagesHandler,
     { provide: 'DealerRepository', useClass: DealerTypeOrmRepositoryImpl },
     { provide: 'PackageRepository', useClass: PackageTypeOrmRepositoryImpl },
     { provide: 'DeliveryRouteRepository', useClass: DeliveryRouteTypeOrmRepositoryImpl },
+    { provide: 'UnitOfWorkRepository', useClass: UnitOfWorkRepositoryImpl },
   ],
    //
 })

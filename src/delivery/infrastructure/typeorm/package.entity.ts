@@ -10,7 +10,7 @@ export class PackageEntity {
   @Column({name:'patient_id'})
   patientId: string;
 
-  @Column({name:'delivery_date'})
+  @Column({name:'delivery_date', nullable:true})
   deliveryDate: Date;
 
   @Column()
@@ -25,6 +25,8 @@ export class PackageEntity {
   @Column({ nullable: true, type: 'float' })
   lng?: number;
 
+  @Column({ name: 'delivery_route_id', nullable: true })
+  deliveryRouteId: string;
 
   @ManyToOne(() => DeliveryRouteEntity, (route) => route.packages, { eager: false })
   @JoinColumn({ name: 'delivery_route_id' })

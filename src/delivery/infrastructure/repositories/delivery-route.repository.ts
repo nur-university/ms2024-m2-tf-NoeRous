@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import type { DeliveryRouteRepository } from 'src/delivery/domain/repositories/delivery-route.repository.interface';
 import { DeliveryRoute } from 'src/delivery/domain/entities/delivery-route.entity';
 
@@ -17,17 +17,26 @@ export class DeliveryRouteTypeOrmRepositoryImpl implements DeliveryRouteReposito
     private readonly ormRepo: Repository<DeliveryRouteEntity>,
   ) {}
 
-  async save(route: DeliveryRoute): Promise<void> {
+  async save(route: DeliveryRoute): Promise<DeliveryRoute> {
     const entity = this.ormRepo.create({
       id: route.id,
       date: route.date,
-      dealer: { id: route.dealer.id } as DealerEntity,
-      packages: route.getPackages().map(pkg => ({ id: pkg.id } as PackageEntity)),
+      dealer: {
+        id: route.dealer.id,
+        firstName: route.dealer._name,
+        lastName: route.dealer._lastName,
+        identityCard: route.dealer._identityCard,
+        cellPhone: Number(route.dealer._cellPhone),
+      } as DeepPartial<DealerEntity>
     });
+    const saved = await this.ormRepo.save(entity);
+    const domainRoute = new DeliveryRoute(saved.id, saved.date, route.dealer);
 
-    await this.ormRepo.save(entity);
+    console.log('domainRoute-->', domainRoute)
+    
+    return domainRoute;
   }
-
+  
   async findById(id: string): Promise<DeliveryRoute | null> {
     const entity = await this.ormRepo.findOne({ 
       where: { id },

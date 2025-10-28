@@ -15,7 +15,9 @@ export class PackageTypeOrmRepositoryImpl implements PackageRepository {
   ) {}
 
    async save(pkg: Package): Promise<void> {
-  const entity = this.ormRepo.create(pkg.toPersistence());
+
+    console.log('pkg.toPersistence()', pkg.toPersistence())
+   const entity = this.ormRepo.create(pkg.toPersistence());
   
     await this.ormRepo.save(entity);
   }

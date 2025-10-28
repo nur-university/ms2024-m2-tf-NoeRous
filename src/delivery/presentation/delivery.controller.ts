@@ -8,6 +8,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateDealerDto } from './dto/create-dealer.dto';
 import { AssignPackageDto } from './dto/assign-package.dto';
 import { CreatePackageDto } from './dto/create-package.dto';
+import { AssignPackagesDto } from './dto/assign-packages.dto';
+import { CreateRouteWithPackagesCommand } from '../aplication/commands/create-route-with-packages.command';
 
 @ApiTags('Delivery')
 @Controller('delivery')
@@ -73,5 +75,11 @@ export class DeliveryController {
             )
         );
          return { message: 'Paquete creado correctamente' };
+    }
+
+    @Post('assign-packages-route')
+    async assignPackagesRoute(@Body() body: AssignPackagesDto) {
+      const command = new CreateRouteWithPackagesCommand(body.deliveryId,body.deliveryDate, body.packages);
+      return this.commandBus.execute(command);
     }
 }
