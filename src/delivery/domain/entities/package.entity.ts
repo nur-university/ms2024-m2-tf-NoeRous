@@ -15,7 +15,7 @@ export class Package {
     ) { }
 
     //marcar  como en transito 
-    markInTransit(dealerId: string) {
+    markInTransit() {
         this.status = 'in_transit';
        // new PackageInTransitEvent(this.id, dealerId, this.deliveryDate);
     }

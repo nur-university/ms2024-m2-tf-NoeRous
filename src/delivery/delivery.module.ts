@@ -16,6 +16,7 @@ import { CreatePackageHandler } from './aplication/handlers/create-package.handl
 import { PatientEntity } from './infrastructure/typeorm/patient.entity';
 import { CreateRouteWithPackagesHandler } from './aplication/handlers/create-route-with-packages.handler';
 import { UnitOfWorkRepositoryImpl } from './infrastructure/repositories/unit-of-work.repository';
+import { TransitPackageHandler } from './aplication/handlers/transit-package.handler';
 
 
 @Module({
@@ -24,7 +25,7 @@ import { UnitOfWorkRepositoryImpl } from './infrastructure/repositories/unit-of-
   ],
   controllers: [DeliveryController],
   providers: [
-    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,CreatePackageHandler,CreateRouteWithPackagesHandler,
+    AssignPackageToDealerHandler,CreateDealerHandler,DeliverPackageHandler,CreatePackageHandler,CreateRouteWithPackagesHandler,TransitPackageHandler,
     { provide: 'DealerRepository', useClass: DealerTypeOrmRepositoryImpl },
     { provide: 'PackageRepository', useClass: PackageTypeOrmRepositoryImpl },
     { provide: 'DeliveryRouteRepository', useClass: DeliveryRouteTypeOrmRepositoryImpl },

@@ -44,7 +44,7 @@ export class AssignPackageToDealerHandler implements ICommandHandler<AssingPacka
          route.addPackage(pkg);
 
          await this.deliveryRouteRepo.save(route);
-         pkg.markInTransit(dealer.id);
+         pkg.markInTransit();
 
         await this.packageRepo.save(pkg);
     }
