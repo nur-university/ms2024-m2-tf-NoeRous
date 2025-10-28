@@ -8,16 +8,16 @@ export class DealerEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({name:"identity_card"})
   identityCard: string;
 
-  @Column()
+  @Column({name:"first_name"})
   firstName: string;
 
-  @Column()
+  @Column({name:"last_name"})
   lastName: string;
 
-  @Column()
+  @Column({name:"cell_phone"})
   cellPhone: number;
 
   @OneToMany(() => DeliveryRouteEntity, (route) => route.dealer, { cascade: true })

@@ -13,10 +13,11 @@ import { DealerEntity } from './infrastructure/typeorm/dealer.entity';
 import { CreateDealerHandler } from './aplication/handlers/create-dealer.handler';
 import { DeliverPackageHandler } from './aplication/handlers/deliver-package.handler';
 import { CreatePackageHandler } from './aplication/handlers/create-package.handler';
+import { PatientEntity } from './infrastructure/typeorm/patient.entity';
 
 @Module({
   imports: [CqrsModule,
-     TypeOrmModule.forFeature([PackageEntity,DeliveryRouteEntity,DealerEntity]),
+     TypeOrmModule.forFeature([PackageEntity,DeliveryRouteEntity,DealerEntity,PatientEntity]),
   ],
   controllers: [DeliveryController],
   providers: [

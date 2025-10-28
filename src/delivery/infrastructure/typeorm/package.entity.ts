@@ -7,16 +7,16 @@ export class PackageEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({name:'patient_id'})
   patientId: string;
 
-  @Column()
+  @Column({name:'delivery_date'})
   deliveryDate: Date;
 
   @Column()
   status: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true,name:'address_street' })
   addressStreet: string;
 
   @Column({ nullable: true, type: 'float' })
