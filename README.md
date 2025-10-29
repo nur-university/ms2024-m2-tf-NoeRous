@@ -17,11 +17,17 @@ No incluye frontend; expone una API REST para ser consumida por otros servicios 
 
 ## Endpoints
 
-| Método | Ruta | Descripción |
-|--------|------|------------|
-| POST | /delivery | Crear un Repartidor |
-| POST | /delivery/assign-package | Asignar paquete a un repartidor |
-| POST | /delivery/deliver-package | Marcar paquete como entregado |
+
+
+| Método   | Ruta                              | Acción                                      |
+| -------- | --------------------------------- | ------------------------------------------- |
+| **POST** | `/delivery/create-dealer`         | Crear un nuevo Repartidor                   |
+| **POST** | `/delivery/create-package`        | Crear un paquete                            |
+| **POST** | `/delivery/assign-package`        | Asignar un paquete a un Dealer              |
+| **POST** | `/delivery/:id/deliver`           | Marcar paquete como **Entregado**           |
+| **POST** | `/delivery/:id/transit`           | Marcar paquete como **En Camino**           |
+| **POST** | `/delivery/assign-packages-route` | Crear una ruta y asignar múltiples paquetes |
+
 
 ## Capa de Dominio
 
