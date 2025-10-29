@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class PackageDto {
-  @ApiProperty({ example: 'P1', description: 'ID del paciente al que se le entregará el paquete' })
+  @ApiProperty({ example: '8794c5c8-5189-4e89-8f34-fbcbaed96ec2', description: 'ID del paciente al que se le entregará el paquete' })
   patientId: string;
 
   @ApiProperty({ example: 'Av. Central', description: 'Calle o avenida de la dirección del paciente' })
@@ -30,14 +30,14 @@ export class AssignPackagesDto {
     description: 'Lista de paquetes que se asignarán al delivery',
     example: [
       {
-        patientId: 'P1',
+        patientId: 'ef732abf-301c-4e04-a3b4-6e12d8a96893',
         addressStreet: 'Av. Central',
         addressCity: 'Cochabamba',
         lat: -17.38,
         lng: -66.16,
       },
       {
-        patientId: 'P2',
+        patientId: '8794c5c8-5189-4e89-8f34-fbcbaed96ec2',
         addressStreet: 'Av. Blanco Galindo',
         addressCity: 'Cochabamba',
         lat: -17.4,

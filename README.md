@@ -2,11 +2,10 @@
 
 ## Descripción
 Este microservicio gestiona la logística de entrega de paquetes. Permite:
-- Crear Dealers (distribuidores o repartidores).
-- Asignar paquetes a Dealers.
-- Marcar paquetes como entregados.
-- Crear Paquetes
-- Consultar rutas de entrega y paquetes asignados.
+- Crear Dealers (repartidores).
+- Crear Paquetes.
+- Crear rutas y asociar múltiples paquetes a ellas
+- Marcar paquetes como En Tránsito o Entregados
 
 El microservicio está desarrollado aplicando:
 - **Domain Driven Design (DDD)**
@@ -44,6 +43,7 @@ No incluye frontend; expone una API REST para ser consumida por otros servicios 
 
 ### Value Objects
 - CellPhone
+- Address
 
 ### Agregados
 - DeliveryRoute (agrega paquetes y dealer)
